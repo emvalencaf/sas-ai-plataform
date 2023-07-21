@@ -1,12 +1,16 @@
 "use client";
 
-// ui componentt
+// ui components
 import { Button } from "../../../ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
+// custom components
+import ClientComponent from "@/components/ClientComponent";
+import Sidebar from "@/components/Sidebar";
 
 // icons
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import Sidebar from "../../../Sidebar";
+
 
 // interfaces
 export interface IMobileSidebarProps {
@@ -15,16 +19,18 @@ export interface IMobileSidebarProps {
 
 const MobileSidebar: React.FC<IMobileSidebarProps> = ({}) => {
     return (
-        <Sheet>
-            <SheetTrigger>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                    <Menu />
-                </Button>
-                <SheetContent side="left" className="p-0">
-                    <Sidebar />
-                </SheetContent>
-            </SheetTrigger>
-        </Sheet>
+        <ClientComponent>
+            <Sheet>
+                <SheetTrigger>
+                    <Button variant="ghost" size="icon" className="md:hidden">
+                        <Menu />
+                    </Button>
+                    <SheetContent side="left" className="p-0">
+                        <Sidebar />
+                    </SheetContent>
+                </SheetTrigger>
+            </Sheet>
+        </ClientComponent>
     );
 };
 
