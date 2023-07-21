@@ -1,5 +1,7 @@
+import DashboardClient from "./components/DashboardClient";
+
 const DashboardPage = () => {
-    return <div></div>;
+    return <DashboardClient />;
 };
 
 export default DashboardPage;

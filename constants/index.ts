@@ -17,6 +17,14 @@ interface INavRoutes {
     color: string;
 }
 
+interface ITool {
+    label: string;
+    icon: LucideIcon;
+    href: string;
+    color: string;
+    bgColor: string;
+}
+
 export const SideBarMenuRoutes: INavRoutes[] = [
     {
         label: "Dashboard",
@@ -46,7 +54,7 @@ export const SideBarMenuRoutes: INavRoutes[] = [
         label: "Music Generation",
         icon: Music,
         href: "/music",
-        color: "text-esmerald-500",
+        color: "text-emerald-500",
     },
     {
         label: "Code Generation",
@@ -62,3 +70,42 @@ export const SideBarMenuRoutes: INavRoutes[] = [
         color: "text-orange-700",
     },
 ];
+
+
+export const tools: ITool[] = [
+    {
+        label: "Conversation",
+        icon: MessageSquare,
+        color: "text-violet-500",
+        bgColor: "bg-violet-500/10",
+        href: "/conversation",
+    },
+    {
+        label: "Image Generation",
+        icon: ImageIcon,
+        color: "text-pink-700",
+        bgColor: "bg-pink-700/10",
+        href: "/image",
+    },
+    {
+        label: "Video Generation",
+        icon: VideoIcon,
+        color: "text-orange-700",
+        bgColor: "bg-orange-700/10",
+        href: "/video",
+    },
+    {
+        label: "Music Generation",
+        icon: Music,
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-500/10",
+        href: "/music",
+    },
+    {
+        label: "Code Generation",
+        icon: Code,
+        color: "text-green-700",
+        bgColor: "bg-green-700/10",
+        href: "/code",
+    },
+]
