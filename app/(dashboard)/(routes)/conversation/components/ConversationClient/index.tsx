@@ -6,6 +6,8 @@ import Heading from "@/components/Heading";
 // icons
 import { MessageSquare } from "lucide-react";
 import ConversationForm from "../ConversationForm";
+import { ConversationChatProvider } from "../../../../../../contexts/ConversationChatContext/providers";
+import ConversationChat from "../ConversationChat";
 
 const ConversationClient: React.FC = () => {
     return (
@@ -17,10 +19,10 @@ const ConversationClient: React.FC = () => {
                 iconColor="text-violet-500"
                 bgColor="text-violet-500/10"
             />
-            <ConversationForm />
-            <div className="space-y-4 mt-4">
-                Message Generated
-            </div>
+            <ConversationChatProvider>
+                <ConversationForm />
+                <ConversationChat />
+            </ConversationChatProvider>
         </div>
     );
 };
