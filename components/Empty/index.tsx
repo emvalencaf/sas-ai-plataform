@@ -15,7 +15,7 @@ const Empty: React.FC<IEmpetyProps> = ({ label }) => {
                 <Image
                     fill
                     alt="Empety"
-                    src="/assets/empty.png"
+                    src="/assets/logo.png"
                 />
             </div>
             <p className="text-muted-foreground text-sm text-center">
