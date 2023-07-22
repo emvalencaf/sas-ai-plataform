@@ -22,6 +22,7 @@ import { formSchema } from "../../constants";
 // interfaces
 import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
+import { useCallback } from "react";
 
 const CodeForm: React.FC = () => {
     // navigation controller
@@ -29,8 +30,6 @@ const CodeForm: React.FC = () => {
 
     // chat messages states
     const { messages, setMessages, form, isLoading } = useChat();
-
-    if (!form) return null;
 
     // form values states
     /*
@@ -40,37 +39,48 @@ const CodeForm: React.FC = () => {
             prompt: "",
         },
     });
-
+    
     // loading state
     const isLoading = form.formState.isSubmitting;
-*/
+    */
     // handle submit
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        try {
-            // new chat message
-            const userMessage: ChatCompletionRequestMessage = {
-                role: "user",
-                content: values.prompt,
-            };
+    const onSubmit = useCallback(
+        async (values: z.infer<typeof formSchema>) => {
+            if (!form) return null;
 
-            // insert new chat message into chat
-            const newMessages = [...messages, userMessage];
+            try {
+                // new chat message
+                const userMessage: ChatCompletionRequestMessage = {
+                    role: "user",
+                    content: values.prompt,
+                };
 
-            // getting chatbot response
-            const response = await axios.post("/api/code", {
-                mesages: newMessages,
-            });
+                // insert new chat message into chat
+                const newMessages = [...messages, userMessage];
 
-            setMessages((current) => [...current, userMessage, response.data]);
+                // getting chatbot response
+                const response = await axios.post("/api/code", {
+                    mesages: newMessages,
+                });
 
-            form.reset();
-        } catch (error: any) {
-            console.log("[CODE_ERROR]:", error); // dev console log
-            // TODO: OPEN PREMIUM MODAL
-        } finally {
-            router.refresh();
-        }
-    };
+                setMessages((current) => [
+                    ...current,
+                    userMessage,
+                    response.data,
+                ]);
+
+                form.reset();
+            } catch (error: any) {
+                console.log("[CODE_ERROR]:", error); // dev console log
+                // TODO: OPEN PREMIUM MODAL
+            } finally {
+                router.refresh();
+            }
+        },
+        [messages, setMessages, form, router]
+    );
+
+    if (!form) return null;
 
     return (
         <div className="px-4 lg:px-8">
@@ -87,7 +97,7 @@ const CodeForm: React.FC = () => {
                                     <Input
                                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="Who is Ryan Gosling?"
+                                        placeholder="Code for me a react button using tailwindcss and typescript."
                                         {...field}
                                     />
                                 </FormControl>
