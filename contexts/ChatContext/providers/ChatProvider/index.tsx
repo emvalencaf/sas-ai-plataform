@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // contexts
-import ConversationChatContext from "../../";
+import ConversationChatContext from "../..";
 
 // zood
 import { zodResolver } from "@hookform/resolvers/zod";

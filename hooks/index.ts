@@ -1,1 +1,1 @@
-export { default as useConversationChat } from "./useConversationChat";
+export { default as useChat } from "./useChat";

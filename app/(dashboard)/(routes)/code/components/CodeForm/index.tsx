@@ -23,7 +23,7 @@ import { formSchema } from "../../constants";
 import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 
-const ConversationForm: React.FC = () => {
+const CodeForm: React.FC = () => {
     // navigation controller
     const router = useRouter();
 
@@ -57,7 +57,7 @@ const ConversationForm: React.FC = () => {
             const newMessages = [...messages, userMessage];
 
             // getting chatbot response
-            const response = await axios.post("/api/conversation", {
+            const response = await axios.post("/api/code", {
                 mesages: newMessages,
             });
 
@@ -65,7 +65,7 @@ const ConversationForm: React.FC = () => {
 
             form.reset();
         } catch (error: any) {
-            console.log("[CONVERSATION_ERROR]:", error); // dev console log
+            console.log("[CODE_ERROR]:", error); // dev console log
             // TODO: OPEN PREMIUM MODAL
         } finally {
             router.refresh();
@@ -106,4 +106,4 @@ const ConversationForm: React.FC = () => {
     );
 };
 
-export default ConversationForm;
+export default CodeForm;

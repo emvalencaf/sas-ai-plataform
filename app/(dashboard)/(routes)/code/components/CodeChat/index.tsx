@@ -11,13 +11,14 @@ import BotAvatar from "@/components/BotAvatar";
 
 // libs
 import { cn } from "@/lib/utils";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 // interfaces
-export interface IConversationChatProps {
+export interface ICodeChatProps {
     title?: string;
 }
 
-const ConversationChat: React.FC<IConversationChatProps> = () => {
+const CodeChat: React.FC<ICodeChatProps> = () => {
     const { messages, isLoading } = useChat();
 
     return (
@@ -46,7 +47,18 @@ const ConversationChat: React.FC<IConversationChatProps> = () => {
                         ) : (
                             <BotAvatar />
                         )}
-                        {message.content}
+                        <ReactMarkdown components={{
+                            pre: ({ node, ...props}) => (
+                                <div
+                                    className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg"
+                                >
+                                    <pre {...props} />
+                                </div>
+                            ),
+                            code: ({ node, ...props }) => (
+                                <code className="bg-black/10 rounded-lg p-1" {...props} />
+                            )
+                        }} className="text-sm overflow-hidden leading-7">{message.content || ""}</ReactMarkdown>
                     </div>
                 ))}
             </div>
@@ -54,4 +66,4 @@ const ConversationChat: React.FC<IConversationChatProps> = () => {
     );
 };
 
-export default ConversationChat;
+export default CodeChat;

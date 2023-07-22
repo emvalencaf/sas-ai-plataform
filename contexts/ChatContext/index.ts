@@ -11,18 +11,18 @@ import { ChatCompletionRequestMessage } from "openai";
 import { UseFormReturn } from "react-hook-form";
 import { formSchema } from "../../app/(dashboard)/(routes)/conversation/constants";
 
-interface IConversationChatContext {
+interface IChatContext {
     messages: ChatCompletionRequestMessage[];
     setMessages: Dispatch<SetStateAction<ChatCompletionRequestMessage[]>>;
     isLoading: boolean;
     form: UseFormReturn<z.infer<typeof formSchema>> | null;
 }
 
-const ConversationChatContext = createContext<IConversationChatContext>({
+const ChatContext = createContext<IChatContext>({
     messages: [],
     setMessages: () => {},
     isLoading: false,
     form: null,
 });
 
-export default ConversationChatContext;
+export default ChatContext;
