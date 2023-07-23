@@ -108,4 +108,6 @@ export const tools: ITool[] = [
         bgColor: "bg-green-700/10",
         href: "/code",
     },
-]
+];
+
+export const MAX_FREE_COUNTS = 5;
