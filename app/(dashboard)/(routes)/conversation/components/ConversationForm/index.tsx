@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 // custom hooks
-import { useChat } from "@/hooks";
+import { useChat, useProModal } from "@/hooks";
 
 // zod tools
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,18 +31,9 @@ const ConversationForm: React.FC = () => {
     // chat messages states
     const { messages, setMessages, form, isLoading } = useChat();
 
-    // form values states
-    /*
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            prompt: "",
-        },
-    });
-    
-    // loading state
-    const isLoading = form.formState.isSubmitting;
-    */
+    // pro modal controller
+    const proModal = useProModal();
+
     // handle submit
     const onSubmit = useCallback(
         async (values: z.infer<typeof formSchema>) => {
@@ -72,12 +63,13 @@ const ConversationForm: React.FC = () => {
                 form.reset();
             } catch (error: any) {
                 console.log("[CONVERSATION_ERROR]:", error); // dev console log
-                // TODO: OPEN PREMIUM MODAL
+                // will open up a modal
+                if (error?.response?.status === 403) proModal.onOpen();
             } finally {
                 router.refresh();
             }
         },
-        [messages, setMessages, router, form]
+        [form, messages, setMessages, proModal, router]
     );
 
     if (!form) return null;

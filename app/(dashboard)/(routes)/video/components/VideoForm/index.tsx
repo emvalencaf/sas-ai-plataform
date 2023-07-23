@@ -4,7 +4,7 @@
 import { useRouter } from "next/navigation";
 
 // custom hooks
-import { useGenerateVideo } from "@/hooks";
+import { useGenerateVideo, useProModal } from "@/hooks";
 
 // zod tools
 import * as z from "zod";
@@ -26,7 +26,10 @@ const VideoForm: React.FC = () => {
     const router = useRouter();
 
     // chat video states
-    const { video, setVideo, form, isLoading } = useGenerateVideo();
+    const { setVideo, form, isLoading } = useGenerateVideo();
+
+    // pro modal controller
+    const proModal = useProModal();
 
     const onSubmit = useCallback(
         async (values: z.infer<typeof videoFormSchema>) => {
@@ -43,12 +46,14 @@ const VideoForm: React.FC = () => {
                 form.reset();
             } catch (error: any) {
                 console.log("[VIDEO_ERROR]:", error); // dev console log
-                // TODO: OPEN PREMIUM MODAL
+
+                if (error?.response?.status === 403) proModal.onOpen();
+
             } finally {
                 router.refresh();
             }
         },
-        [setVideo, router, form]
+        [form, setVideo, proModal, router]
     );
 
     if (!form) return null;

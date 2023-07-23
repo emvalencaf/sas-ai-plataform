@@ -4,7 +4,7 @@
 import { useRouter } from "next/navigation";
 
 // custom hooks
-import { useGenerateMusic } from "@/hooks";
+import { useGenerateMusic, useProModal } from "@/hooks";
 
 // zod tools
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +27,9 @@ const MusicForm: React.FC = () => {
     const router = useRouter();
 
     // chat music states
-    const { music, setMusic, form, isLoading } = useGenerateMusic();
+    const { setMusic, form, isLoading } = useGenerateMusic();
+
+    const proModal = useProModal();
 
     const onSubmit = useCallback(
         async (values: z.infer<typeof musicFormSchema>) => {
@@ -44,12 +46,14 @@ const MusicForm: React.FC = () => {
                 form.reset();
             } catch (error: any) {
                 console.log("[MUSIC_ERROR]:", error); // dev console log
-                // TODO: OPEN PREMIUM MODAL
+                
+                if (error?.response?.status === 403) proModal.onOpen();
+
             } finally {
                 router.refresh();
             }
         },
-        [setMusic, router, form]
+        [form, setMusic, proModal, router]
     );
 
     if (!form) return null;

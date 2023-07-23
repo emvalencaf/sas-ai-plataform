@@ -14,10 +14,10 @@ import { Menu } from "lucide-react";
 
 // interfaces
 export interface IMobileSidebarProps {
-    title?: string;
+    apiLimitCount: number;
 }
 
-const MobileSidebar: React.FC<IMobileSidebarProps> = ({}) => {
+const MobileSidebar: React.FC<IMobileSidebarProps> = ({ apiLimitCount, }) => {
     return (
         <ClientComponent>
             <Sheet>
@@ -26,7 +26,7 @@ const MobileSidebar: React.FC<IMobileSidebarProps> = ({}) => {
                         <Menu />
                     </Button>
                     <SheetContent side="left" className="p-0">
-                        <Sidebar />
+                        <Sidebar apiLimitCount={apiLimitCount} />
                     </SheetContent>
                 </SheetTrigger>
             </Sheet>

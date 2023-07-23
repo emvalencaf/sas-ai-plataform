@@ -4,7 +4,7 @@
 import { useRouter } from "next/navigation";
 
 // custom hooks
-import { useGenerateImage } from "@/hooks";
+import { useGenerateImage, useProModal } from "@/hooks";
 
 // zod tools
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,18 +37,8 @@ const ImageForm: React.FC = () => {
 
     const { images, setImages, form, isLoading } = useGenerateImage();
 
-    // form values states
-    /*
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            prompt: "",
-        },
-    });
+    const proModal = useProModal();
 
-    // loading state
-    const isLoading = form.formState.isSubmitting;
-*/
     // handle submit
     const onSubmit = useCallback(async (values: z.infer<typeof imageFormSchema>) => {
         
@@ -72,7 +62,7 @@ const ImageForm: React.FC = () => {
             form.reset();
         } catch (error: any) {
             console.log("[IMAGE_ERROR]:", error); // dev console log
-            // TODO: OPEN PREMIUM MODAL
+            if (error?.response?.status === 403) proModal.onOpen();
         } finally {
             router.refresh();
         }

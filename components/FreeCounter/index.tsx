@@ -1,12 +1,18 @@
 "use client";
 
+// custom hooks
+import { useProModal } from "@/hooks";
+
+// ui components
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+// constants
+import { MAX_FREE_COUNTS } from "@/constants";
+
+// icons
 import { Zap } from "lucide-react";
-import { MAX_FREE_COUNTS } from "../../constants";
-// custom components
-import ClientComponent from "../ClientComponent";
-import { Card, CardContent } from "../ui/card";
-import { Progress } from "../ui/progress";
-import { Button } from "../ui/button";
 
 // interfaces
 export interface IFreeCounterProps {
@@ -14,6 +20,10 @@ export interface IFreeCounterProps {
 }
 
 const FreeCounter: React.FC<IFreeCounterProps> = ({ apiLimitCount = 0 }) => {
+
+    // controller pro modal
+    const proModal = useProModal();
+
     return (
         <div className="px-3">
             <Card className="bg-white/10 border-0">
@@ -27,7 +37,7 @@ const FreeCounter: React.FC<IFreeCounterProps> = ({ apiLimitCount = 0 }) => {
                             value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
                         />
                     </div>
-                    <Button variant="premium" className="w-full">
+                    <Button onClick={proModal.onOpen} variant="premium" className="w-full">
                         Upgrade
                         <Zap className="w-4 h-4 ml--2 fill-white" />
                     </Button>
