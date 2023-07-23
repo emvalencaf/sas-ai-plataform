@@ -13,6 +13,8 @@ import { Montserrat } from "next/font/google";
 // libs
 import { cn } from "@/lib/utils";
 import { SideBarMenuRoutes } from "../../constants";
+import FreeCounter from "../FreeCounter";
+import ClientComponent from "../ClientComponent";
 
 const montserrat = Montserrat({
     weight: "600",
@@ -21,14 +23,12 @@ const montserrat = Montserrat({
 
 // interfaces
 export interface ISidebarProps {
-    title?: string;
+    apiLimitCount: number;
 }
 
-const Sidebar: React.FC<ISidebarProps> = ({ title = "" }) => {
+const Sidebar: React.FC<ISidebarProps> = ({ apiLimitCount }) => {
     // get pathname
     const pathname = usePathname();
-
-    // toggle activation
 
     return (
         <div className="spcae-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -71,6 +71,9 @@ const Sidebar: React.FC<ISidebarProps> = ({ title = "" }) => {
                     ))}
                 </div>
             </div>
+            <ClientComponent>
+                <FreeCounter apiLimitCount={apiLimitCount} />
+            </ClientComponent>
         </div>
     );
 };
