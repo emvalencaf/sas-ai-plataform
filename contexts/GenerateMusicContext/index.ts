@@ -18,7 +18,7 @@ interface IGenerateMusicContext {
 }
 
 const GenerateMusicContext = createContext<IGenerateMusicContext>({
-    music: [],
+    music: '',
     setMusic: () => {},
     isLoading: false,
     form: null,

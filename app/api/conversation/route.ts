@@ -33,7 +33,7 @@ export async function POST(
         return NextResponse.json(response.data.choices[0].message);
 
     } catch (error:any) {
-        console.log("CONVERSATION_ERRO", error);
+        console.log("[CONVERSATION_ERROR]", error);
         return new NextResponse("Internal error", { status: 500 })
     }
 }
