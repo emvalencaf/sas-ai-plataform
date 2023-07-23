@@ -2,10 +2,9 @@
 
 // hooks
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 
 // custom hooks
-import { useChat } from "@/hooks";
+import { useGenerateMusic } from "@/hooks";
 
 // zod tools
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,67 +16,40 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 // formSchema
-import { formSchema } from "../../constants";
+import { musicFormSchema } from "../../constants";
 
 // interfaces
-import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 import { useCallback } from "react";
 
-const ConversationForm: React.FC = () => {
+const MusicForm: React.FC = () => {
     // navigation controller
     const router = useRouter();
 
-    // chat messages states
-    const { messages, setMessages, form, isLoading } = useChat();
+    // chat music states
+    const { music, setMusic, form, isLoading } = useGenerateMusic();
 
-    // form values states
-    /*
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            prompt: "",
-        },
-    });
-    
-    // loading state
-    const isLoading = form.formState.isSubmitting;
-    */
-    // handle submit
     const onSubmit = useCallback(
-        async (values: z.infer<typeof formSchema>) => {
+        async (values: z.infer<typeof musicFormSchema>) => {
             if (!form) return null;
 
             try {
-                // new chat message
-                const userMessage: ChatCompletionRequestMessage = {
-                    role: "user",
-                    content: values.prompt,
-                };
+                setMusic('');
 
-                // insert new chat message into chat
-                const newMessages = [...messages, userMessage];
+                console.log(values);
+                const response = await axios.post("/api/music", values);
 
-                // getting chatbot response
-                const response = await axios.post("/api/conversation", {
-                    mesages: newMessages,
-                });
-
-                setMessages((current) => [
-                    ...current,
-                    userMessage,
-                    response.data,
-                ]);
+                setMusic(response.data.audio);
 
                 form.reset();
             } catch (error: any) {
-                console.log("[CONVERSATION_ERROR]:", error); // dev console log
+                console.log("[MUSIC_ERROR]:", error); // dev console log
                 // TODO: OPEN PREMIUM MODAL
             } finally {
                 router.refresh();
             }
         },
-        [messages, setMessages, router, form]
+        [setMusic, router, form]
     );
 
     if (!form) return null;
@@ -97,7 +69,7 @@ const ConversationForm: React.FC = () => {
                                     <Input
                                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="Who is Ryan Gosling?"
+                                        placeholder="A guitar solo?"
                                         {...field}
                                     />
                                 </FormControl>
@@ -116,4 +88,4 @@ const ConversationForm: React.FC = () => {
     );
 };
 
-export default ConversationForm;
+export default MusicForm;

@@ -4,10 +4,10 @@
 import Heading from "@/components/Heading";
 
 // icons
-import { MessageSquare } from "lucide-react";
-import ConversationForm from "../MusicForm";
-import { ChatProvider } from "../../../../../../contexts/ChatContext/providers";
-import ConversationChat from "../MusicChat";
+import { Music } from "lucide-react";
+import MusicForm from "../MusicForm";
+import GenerateMusicProvider from "@/contexts/GenerateMusicContext/providers/GenerateMusicProvider";
+import MusicContainer from "../MusicContainer";
 
 const MusicClient: React.FC = () => {
     return (
@@ -15,14 +15,14 @@ const MusicClient: React.FC = () => {
             <Heading
                 title="Music"
                 description="Turn your prompt into music"
-                icon={MessageSquare}
-                iconColor="text-violet-500"
-                bgColor="text-violet-500/10"
+                icon={Music}
+                iconColor="text-emerald-500"
+                bgColor="text-emerald-500/10"
             />
-            <ChatProvider>
-                <ConversationForm />
-                <ConversationChat />
-            </ChatProvider>
+            <GenerateMusicProvider>
+                <MusicForm />
+                <MusicContainer />
+            </GenerateMusicProvider>
         </div>
     );
 };
