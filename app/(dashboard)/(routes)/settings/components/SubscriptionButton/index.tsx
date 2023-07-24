@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 
 // icons
 import { Zap } from "lucide-react";
+import toast from "react-hot-toast";
 
 // interfaces
 interface ISubscriptionButtonProps {
@@ -31,6 +32,7 @@ const SubscriptionButton: React.FC<ISubscriptionButtonProps> = ({
             window.location.href = response.data.url;
         } catch (error: any) {
             console.log("[BILLING_ERROR]:", error);
+            toast.error("Something went wrong");
         } finally {
             setIsLoading(false);
         }

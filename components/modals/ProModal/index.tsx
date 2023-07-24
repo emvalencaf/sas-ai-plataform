@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 
 // icons
 import { Check, Zap } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ProModal: React.FC = () => {
 
@@ -42,6 +43,7 @@ const ProModal: React.FC = () => {
 
         } catch (error: any) {
             console.log("[STRIPE_CLIENT_ERROR]:", error);
+            toast.error("Something went wrong");
         } finally {
             setIsLoading(false)
         }

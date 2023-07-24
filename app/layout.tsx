@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 
 // providers
 import { ClerkProvider } from "@clerk/nextjs";
-import ModalProvider from "../contexts/ModalProvider";
-import ToastProvider from "../contexts/ToastContext/providers";
+import ModalProvider from "@/contexts/ModalProvider";
+import ToastProvider from "@/contexts/ToastContext/providers";
+import CrispProvider from "@/contexts/CrispContext/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     return (
         <ClerkProvider>
             <html lang="en">
+                <CrispProvider />
                 <body className={inter.className}>
                     <ToastProvider />
                     <ModalProvider />
