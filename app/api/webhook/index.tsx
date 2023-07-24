@@ -12,7 +12,6 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(req: Request) {
     const body = await req.text();
-
     const signature = headers().get("Stripe-Signature") as string;
 
     let event: Stripe.Event;
@@ -36,10 +35,11 @@ export async function POST(req: Request) {
             session.subscription as string
         );
 
-        if (!session?.metadata?.userId)
+        if (!session?.metadata?.userId) {
             return new NextResponse("User id is required", { status: 400 });
+        }
 
-        await prismadb.userSubscrition.create({
+        await prismadb.userSubscription.create({
             data: {
                 userId: session?.metadata?.userId,
                 stripeSubscriptionId: subscription.id,
@@ -54,21 +54,21 @@ export async function POST(req: Request) {
 
     if (event.type === "invoice.payment_succeeded") {
         const subscription = await stripe.subscriptions.retrieve(
-            session.subscription as string,
+            session.subscription as string
         );
 
-        await prismadb.userSubscrition.update({
+        await prismadb.userSubscription.update({
             where: {
                 stripeSubscriptionId: subscription.id,
             },
             data: {
                 stripePriceId: subscription.items.data[0].price.id,
                 stripeCurrentPeriodEnd: new Date(
-                    subscription.current_period_end * 1000,
+                    subscription.current_period_end * 1000
                 ),
             },
         });
     }
 
-    return new NextResponse(null, { status: 200, });
+    return new NextResponse(null, { status: 200 });
 }

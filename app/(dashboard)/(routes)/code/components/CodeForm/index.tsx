@@ -21,6 +21,7 @@ import { formSchema } from "../../constants";
 import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 import { useCallback } from "react";
+import toast from "react-hot-toast";
 
 const CodeForm: React.FC = () => {
     // navigation controller
@@ -62,7 +63,11 @@ const CodeForm: React.FC = () => {
             } catch (error: any) {
                 console.log("[CODE_ERROR]:", error); // dev console log
                 
-                if (error?.response?.status === 403) proModal.onOpen();
+                if (error?.response?.status === 403) {
+                    proModal.onOpen();
+                } else {
+                    toast.error("Something went wrong!");
+                }
 
             } finally {
                 router.refresh();

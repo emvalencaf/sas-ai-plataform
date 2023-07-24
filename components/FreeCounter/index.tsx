@@ -17,12 +17,15 @@ import { Zap } from "lucide-react";
 // interfaces
 export interface IFreeCounterProps {
     apiLimitCount: number;
+    isPro: boolean;
 }
 
-const FreeCounter: React.FC<IFreeCounterProps> = ({ apiLimitCount = 0 }) => {
+const FreeCounter: React.FC<IFreeCounterProps> = ({ apiLimitCount = 0, isPro = false, }) => {
 
     // controller pro modal
     const proModal = useProModal();
+
+    if (isPro) return null;
 
     return (
         <div className="px-3">

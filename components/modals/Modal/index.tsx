@@ -22,6 +22,8 @@ export interface IModalProps {
     btnIcon: LucideIcon;
     isOpen: boolean;
     onClose: () => void;
+    btnFn: () => void;
+    isLoading: boolean;
 }
 
 const Modal: React.FC<IModalProps> = ({
@@ -32,6 +34,8 @@ const Modal: React.FC<IModalProps> = ({
     content,
     btnLabel,
     btnIcon: Icon,
+    isLoading,
+    btnFn,
 }) => {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -53,7 +57,13 @@ const Modal: React.FC<IModalProps> = ({
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <Button size="lg" variant="premium" className="w-full">
+                    <Button
+                        onClick={btnFn}
+                        disabled={isLoading}
+                        size="lg"
+                        variant="premium"
+                        className="w-full"
+                    >
                         {btnLabel}
                         <Icon className="w-4 h-4 ml--2 fill-white" />
                     </Button>

@@ -24,9 +24,10 @@ const montserrat = Montserrat({
 // interfaces
 export interface ISidebarProps {
     apiLimitCount: number;
+    isPro: boolean;
 }
 
-const Sidebar: React.FC<ISidebarProps> = ({ apiLimitCount }) => {
+const Sidebar: React.FC<ISidebarProps> = ({ apiLimitCount, isPro, }) => {
     // get pathname
     const pathname = usePathname();
 
@@ -72,7 +73,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ apiLimitCount }) => {
                 </div>
             </div>
             <ClientComponent>
-                <FreeCounter apiLimitCount={apiLimitCount} />
+                <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
             </ClientComponent>
         </div>
     );

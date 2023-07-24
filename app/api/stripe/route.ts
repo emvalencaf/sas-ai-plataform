@@ -13,24 +13,23 @@ import { stripe } from "@/lib/stripe";
 // utils
 import { absoluteUrl } from "@/lib/utils";
 
-const settingsUrl = absoluteUrl('/settings');
+const settingsUrl = absoluteUrl("/settings");
 
 export async function GET() {
     try {
-        
         const { userId } = auth();
-
         const user = await currentUser();
 
-        if (!userId || !user) return new NextResponse("Unauthorized", { status: 401, });
+        if (!userId || !user) {
+            return new NextResponse("Unauthorized", { status: 401 });
+        }
 
-        const userSubscription = await prismadb.userSubscrition.findUnique({
+        const userSubscription = await prismadb.userSubscription.findUnique({
             where: {
                 userId,
             },
         });
 
-        // to manager an existing subscription
         if (userSubscription && userSubscription.stripeCustomerId) {
             const stripeSession = await stripe.billingPortal.sessions.create({
                 customer: userSubscription.stripeCustomerId,
@@ -40,7 +39,6 @@ export async function GET() {
             return new NextResponse(JSON.stringify({ url: stripeSession.url }));
         }
 
-        // create a new subscription
         const stripeSession = await stripe.checkout.sessions.create({
             success_url: settingsUrl,
             cancel_url: settingsUrl,
@@ -53,8 +51,8 @@ export async function GET() {
                     price_data: {
                         currency: "USD",
                         product_data: {
-                            name: "Genie Pro",
-                            description: "Unlimited AI Generations"
+                            name: "Genius Pro",
+                            description: "Unlimited AI Generations",
                         },
                         unit_amount: 2000,
                         recurring: {
@@ -70,8 +68,8 @@ export async function GET() {
         });
 
         return new NextResponse(JSON.stringify({ url: stripeSession.url }));
-    } catch (error: any) {
+    } catch (error) {
         console.log("[STRIPE_ERROR]", error);
-        return new NextResponse("Internal Error", { status: 500, })
+        return new NextResponse("Internal Error", { status: 500 });
     }
 }

@@ -2,14 +2,19 @@
 
 // hooks
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useCallback } from "react";
 
 // custom hooks
 import { useChat, useProModal } from "@/hooks";
 
 // zod tools
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+
+// axios
+import axios from "axios";
+
+// toast
+import toast from "react-hot-toast";
 
 // ui components
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -21,8 +26,6 @@ import { formSchema } from "../../constants";
 
 // interfaces
 import { ChatCompletionRequestMessage } from "openai";
-import axios from "axios";
-import { useCallback } from "react";
 
 const ConversationForm: React.FC = () => {
     // navigation controller
@@ -64,7 +67,11 @@ const ConversationForm: React.FC = () => {
             } catch (error: any) {
                 console.log("[CONVERSATION_ERROR]:", error); // dev console log
                 // will open up a modal
-                if (error?.response?.status === 403) proModal.onOpen();
+                if (error?.response?.status === 403) {
+                    proModal.onOpen();
+                } else {
+                    toast.error("Something went wrong!");
+                }
             } finally {
                 router.refresh();
             }

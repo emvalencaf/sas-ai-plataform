@@ -1,30 +1,51 @@
 "use client";
 
+// hooks
+import { useState } from "react";
+
+// custom hooks
+import { useProModal } from "../../../hooks";
+
+// custom components
+import Modal from "../Modal";
+
 // ui components
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { tools } from "@/constants";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
+// constants
+import { tools } from "@/constants";
+
+// axios
+import axios from "axios";
 
 // libs
 import { cn } from "@/lib/utils";
 
 // icons
 import { Check, Zap } from "lucide-react";
-import { useProModal } from "../../../hooks";
-import Modal from "../Modal";
 
 const ProModal: React.FC = () => {
 
+    // states
+    const [isLoading, setIsLoading] = useState(false);
+
     const proModal = useProModal();
+
+    const onSubscribe = async () => {
+
+        setIsLoading(true);
+        try {
+            
+            const response = await axios.get("/api/stripe");
+
+            window.location.href = response.data?.url;
+
+        } catch (error: any) {
+            console.log("[STRIPE_CLIENT_ERROR]:", error);
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     return <Modal
         isOpen={proModal.isOpen}
@@ -59,6 +80,8 @@ const ProModal: React.FC = () => {
         ))}
         btnLabel="Upgrade"
         btnIcon={Zap}
+        btnFn={onSubscribe}
+        isLoading={isLoading}
     />
 /*
     return (
