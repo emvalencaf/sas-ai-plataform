@@ -67,6 +67,8 @@ export async function GET() {
             },
         });
 
+        console.log(stripeSession.url);
+
         return new NextResponse(JSON.stringify({ url: stripeSession.url }));
     } catch (error) {
         console.log("[STRIPE_ERROR]", error);
