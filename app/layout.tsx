@@ -11,8 +11,8 @@ import CrispProvider from "@/contexts/CrispContext/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "AI SaaS Plataform",
-    description: "A SaaS AI plataform",
+    title: "AI Genie",
+    description: "A plataform where you can find a genie to make your wishes come true",
 };
 
 export default function RootLayout({

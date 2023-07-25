@@ -35,7 +35,7 @@ const LandingNavbar: React.FC<ILandingNavbarProps> = ({ title = "" }) => {
                 </div>
                 <h1
                     className={cn(
-                        "text-2xl font-bold text-white",
+                        "text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600",
                         font.className
                     )}
                 >
@@ -43,11 +43,27 @@ const LandingNavbar: React.FC<ILandingNavbarProps> = ({ title = "" }) => {
                 </h1>
             </Link>
             <div className="flex items-center gap-x-2">
-                <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-                    <Button variant="outline" className="rounded-full">
-                        Get Started
-                    </Button>
-                </Link>
+                {isSignedIn && (
+                    <Link href="/dashboard">
+                        <Button variant="outline" className="rounded-full">
+                            Get Started
+                        </Button>
+                    </Link>
+                )}
+                {!isSignedIn && (
+                    <div className="flex gap-5">
+                        <Link href="/sign-up">
+                            <Button variant="outline" className="rounded-full">
+                                Sign up
+                            </Button>
+                        </Link>
+                        <Link href="/sign-in">
+                            <Button variant="outline" className="rounded-full">
+                                Sign in
+                            </Button>
+                        </Link>
+                    </div>
+                )}
             </div>
         </nav>
     );
