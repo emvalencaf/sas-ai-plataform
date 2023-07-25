@@ -6,7 +6,7 @@ import Heading from "@/components/Heading";
 // icons
 import { MessageSquare } from "lucide-react";
 import ConversationForm from "../ConversationForm";
-import { ChatProvider } from "../../../../../../contexts/ChatContext/providers";
+import { ChatProvider } from "@/contexts/ChatContext/providers";
 import ConversationChat from "../ConversationChat";
 
 const ConversationClient: React.FC = () => {
