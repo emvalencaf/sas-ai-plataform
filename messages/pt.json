@@ -1,0 +1,35 @@
+{
+    "head": {
+        "title" : "AI Genie",
+        "description" : "Uma plataforma em que você pode achar um gênio que fará seus desejos reais"
+    },
+    "header": {
+        "navbar": {
+            "landing": {
+                "dashboard-btn" : "Iniciar",
+                "sign-in-btn" : "Entrar",
+                "sign-up-btn" : "Cadastrar"
+            }
+        }
+    },
+    "main" : {
+        "landing" : {
+            "hero" : {
+                "main-title" : "As melhores ferramentas de AI disponíveis",
+                "tools" : {
+                    "video" : "Geração de Vídeos",
+                    "music" : "Geração de Músicas",
+                    "image" : "Geração de Imagens",
+                    "code" : "Geração de Código",
+                    "chat" : "Chatbot"
+                },
+                "sub-title" : "Crie conteúdo usando nossos serviços de AI e faça seu trabalho 10x mais rápido e fácil",
+                "btn" : {
+                    "label" : "Comece a criar",
+                    "conditional-label" : "de graça"
+                },
+                "paragraph" : "Sem colocar cartão de crédito."
+            }
+        }
+    }
+}

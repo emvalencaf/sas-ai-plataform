@@ -10,7 +10,8 @@ import Link from "next/link";
 import TypewriterComponent from "typewriter-effect";
 
 // ui components
-import { Button } from "../../../../components/ui/button";
+import { Button } from "@/components/ui/button";
+import { useLocale, useTranslations } from "next-intl";
 
 // interfaces
 export interface ILandingHeroProps {
@@ -20,19 +21,22 @@ export interface ILandingHeroProps {
 const LandingHero: React.FC<ILandingHeroProps> = ({ title = "" }) => {
     const { isSignedIn } = useAuth();
 
+    const locale = useLocale();
+    const t = useTranslations("main.landing.hero");
+
     return (
         <div className="text-black font-bold py-36 text-center space-y-5">
             <div className="text-4xl space-y-5 font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
-                <h1>The Best AI Tools for</h1>
+                <h1>{t("main-title")}</h1>
                 <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                     <TypewriterComponent
                         options={{
                             strings: [
-                                "Chatbot.",
-                                "Photo Generation.",
-                                "Video Generation.",
-                                "Music Generation.",
-                                "Code Generation.",
+                                t("tools.chat"),
+                                t("tools.image"),
+                                t("tools.video"),
+                                t("tools.music"),
+                                t("tools.code"),
                             ],
                             autoStart: true,
                             loop: true,
@@ -41,7 +45,7 @@ const LandingHero: React.FC<ILandingHeroProps> = ({ title = "" }) => {
                 </div>
             </div>
             <div className="text-sm md:text-xl font-light text-zinc-600">
-                Create content using AI 10x faster.
+                {t("sub-title")}
             </div>
             <div>
                 <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
@@ -49,12 +53,12 @@ const LandingHero: React.FC<ILandingHeroProps> = ({ title = "" }) => {
                         variant="premium"
                         className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
                     >
-                        Start Generating {!isSignedIn && "for free"}
+                        {t("btn.label")} {!isSignedIn && t("btn.conditional-label")}
                     </Button>
                 </Link>
             </div>
             <div className="text-zinc-600 text-xs md:Text-sm font-normal">
-                No credit card required.
+                {t("paragraph")}
             </div>
         </div>
     );

@@ -1,14 +1,14 @@
 
 // custom components
-import LandingNavbar from "@/app/(landing)/components/LandingNavbar";
-import LandingHero from "@/app/(landing)/components/LandingHero";
-import LandingContent from "@/app/(landing)/components/LandingContent";
+import LandingNavbar from "./components/LandingNavbar";
+import LandingHero from "./components/LandingHero";
+import LandingContent from "./components/LandingContent";
 
 
 // interfaces
 export interface ILandingPageProps {
     params: {
-        Id: string;
+        locale: string;
     };
 }
 

@@ -2,8 +2,8 @@
 // custom components
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { getApiLimitCount } from "../../lib/api-limit";
-import { checkSubscription } from "../../lib/subscription";
+import { getApiLimitCount } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 // interfaces
 export interface ILayoutLayoutProps {

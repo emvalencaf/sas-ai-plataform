@@ -2,6 +2,7 @@
 
 // hooks
 import { useAuth } from "@clerk/nextjs";
+import { useTranslations } from "next-intl";
 
 // next components
 import Image from "next/image";
@@ -27,6 +28,8 @@ export interface ILandingNavbarProps {
 const LandingNavbar: React.FC<ILandingNavbarProps> = ({ title = "" }) => {
     const { isSignedIn } = useAuth();
 
+    const t = useTranslations("header.navbar.landing");
+
     return (
         <nav className="p-4 bg-transparent flex items-center justify-between">
             <Link href="/" className="flex items-center">
@@ -46,7 +49,7 @@ const LandingNavbar: React.FC<ILandingNavbarProps> = ({ title = "" }) => {
                 {isSignedIn && (
                     <Link href="/dashboard">
                         <Button variant="outline" className="rounded-full">
-                            Get Started
+                            {t("dashboard-btn")}
                         </Button>
                     </Link>
                 )}
@@ -54,12 +57,12 @@ const LandingNavbar: React.FC<ILandingNavbarProps> = ({ title = "" }) => {
                     <div className="flex gap-5">
                         <Link href="/sign-up">
                             <Button variant="outline" className="rounded-full">
-                                Sign up
+                                {t("sign-up-btn")}
                             </Button>
                         </Link>
                         <Link href="/sign-in">
                             <Button variant="outline" className="rounded-full">
-                                Sign in
+                                {t("sign-in-btn")}
                             </Button>
                         </Link>
                     </div>

@@ -1,0 +1,35 @@
+{
+    "head": {
+        "title" : "AI Genie",
+        "description" : "A plataform where you can find a genie to make your wishes come true"
+    },
+    "header": {
+        "navbar": {
+            "landing": {
+                "dashboard-btn" : "Get Start",
+                "sign-in-btn" : "Sign in",
+                "sign-up-btn" : "Sign up"
+            }
+        }
+    },
+    "main" : {
+        "landing" : {
+            "hero" : {
+                "main-title" : "The Best AI Tools available",
+                "tools" : {
+                    "video" : "Video Generation",
+                    "music" : "Music Generation",
+                    "image" : "Image Generation",
+                    "code" : "Code Generation",
+                    "chat" : "Chatbot"
+                },
+                "sub-title" : "Create content using our AI services and make your job 10x faster and easier",
+                "btn" : {
+                    "label" : "Start Generating",
+                    "conditional-label" : "for free"
+                },
+                "paragraph" : "No credit card required."
+            }
+        }
+    }
+}

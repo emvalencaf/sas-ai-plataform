@@ -1,7 +1,7 @@
 'use client';
 
 import { Settings } from "lucide-react";
-import Heading from "../../../../../../components/Heading";
+import Heading from "@/components/Heading";
 import SubscriptionButton from "../SubscriptionButton";
 
 // interfaces
