@@ -1,19 +1,13 @@
 import Stripe from "stripe";
-
-// nextjs tools
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-// prismadb
 import prismadb from "@/lib/prismadb";
-
-// stripe
 import { stripe } from "@/lib/stripe";
+
 export async function POST(req: Request) {
     const body = await req.text();
     const signature = headers().get("Stripe-Signature") as string;
-
-    console.log("in webhook")
 
     let event: Stripe.Event;
 
@@ -32,7 +26,6 @@ export async function POST(req: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
 
     if (event.type === "checkout.session.completed") {
-        console.log("enter to create a subscription: [WEBHOOK]");
         const subscription = await stripe.subscriptions.retrieve(
             session.subscription as string
         );
@@ -41,7 +34,7 @@ export async function POST(req: Request) {
             return new NextResponse("User id is required", { status: 400 });
         }
 
-        const sub = await prismadb.userSubscription.create({
+        await prismadb.userSubscription.create({
             data: {
                 userId: session?.metadata?.userId,
                 stripeSubscriptionId: subscription.id,
@@ -52,8 +45,6 @@ export async function POST(req: Request) {
                 ),
             },
         });
-
-        console.log(sub);
     }
 
     if (event.type === "invoice.payment_succeeded") {
