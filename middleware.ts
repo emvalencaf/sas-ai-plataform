@@ -12,7 +12,7 @@ const intlMiddleware = createMiddleware({
 
 export default authMiddleware({
     beforeAuth: (req) => intlMiddleware(req),
-    publicRoutes: ["/","/:locale","/:locale/sign-in", "/:locale/sign-up", "/api/webhook"],
+    publicRoutes: ["/","/:locale", "/:locale/sign-in", "/:locale/sign-up", "/api/webhook"],
 });
 
 export const config = {

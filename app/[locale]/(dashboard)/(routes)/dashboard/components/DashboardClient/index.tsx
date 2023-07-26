@@ -1,6 +1,7 @@
 "use client";
 
 // hooks
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 // ui components
@@ -19,17 +20,21 @@ import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
 const DashboardClient: React.FC = () => {
+
     const router = useRouter();
+
+    const locale = useLocale();
+    const t = useTranslations("main.dashboard.index");
 
     return (
         <ClientComponent>
             <div>
                 <div className="mb-8 space-y-4">
                     <h2 className="text-2xl md:text-4xl font-bold text-center">
-                        Explore the power of AI
+                        {t("main-title")}
                     </h2>
                     <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-                        Chat with the smartest AI - Experience the power of AI
+                        {t("sub-title")}
                     </p>
                 </div>
                 <div className="px-4 md:px-20 lg:px-32 space-y-4">
@@ -51,7 +56,7 @@ const DashboardClient: React.FC = () => {
                                     />
                                 </div>
                                 <div className="font-semibold">
-                                    {tool.label}
+                                    {tool[locale as "pt" | "en"].label}
                                 </div>
                             </div>
                             <ArrowRight className="w-5 h-5" />

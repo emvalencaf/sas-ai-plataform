@@ -5,12 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // constants
 import { testimonials } from "@/constants";
+import { useLocale, useTranslations } from "next-intl";
 
 const Testimonials: React.FC = () => {
+
+    const locale = useLocale();
+    const t = useTranslations("main.landing.content.testimonials");
+
     return (
         <div>
             <h2 className="text-center text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 font-extrabold mb-10">
-                Testimonials
+                {t("main-title")}
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {testimonials.map((item) => (

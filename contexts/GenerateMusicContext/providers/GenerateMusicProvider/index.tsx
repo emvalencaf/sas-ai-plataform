@@ -14,7 +14,7 @@ import * as z from "zod";
 // interfaces
 import { ChatCompletionRequestMessage } from "openai";
 
-import { musicFormSchema } from "@/app/(dashboard)/(routes)/music/constants";
+import { musicFormSchema } from "@/app/[locale]/(dashboard)/(routes)/music/constants";
 
 interface IGenerateMusicProvider {
     children: React.ReactNode;

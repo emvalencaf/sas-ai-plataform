@@ -29,6 +29,86 @@
                     "conditional-label" : "de graça"
                 },
                 "paragraph" : "Sem colocar cartão de crédito."
+            },
+            "content" : {
+                "availabe-services" : {
+                    "main-title" : "Serviços Disponíveis"
+                },
+                "testimonials" : {
+                    "main-title" : "Testemunhos"
+                }
+            }
+        },
+        "dashboard" : {
+            "index" : {
+                "main-title" : "Explore o poder das IA",
+                "sub-title" : "Use a mais inteligente das AI - experiencie o poder das Inteligências Artificias."
+            },
+            "conversation" : {
+                "main-title" : "Converse",
+                "description" : "Nosso mais avanço modelo de conversa",
+                "form" : {
+                    "placeholder" : "Quem é Ryan Gosling?",
+                    "btn-label": "Gere Resposta",
+                    "error-msg": "Algo deu errado!"
+                }
+            },
+            "image" : {
+                "main-title" : "Imagem",
+                "description" : "Torne suas instruções em imagem",
+                "loader-label" : "Nosso gênio está produzindo a(s) imagem(ns)",
+                "empty-label": "Nenhuma imagem criada.",
+                "form" : {
+                    "placeholder" : "A pintura de um cavalo nos alpes suíços",
+                    "btn-label": "Gere Resposta",
+                    "error-msg": "Algo deu errado!"
+                }
+            },
+            "video" : {
+                "main-title" : "Vídeo",
+                "description" : "Torne suas instruções em vídeo",
+                "loader-label" : "Nosso gênio está produzindo o vídeo...",
+                "empty-label": "Nenhum vídeo criado.",
+                "form" : {
+                    "placeholder" : "Um gato pulando",
+                    "btn-label": "Gerar Vídeo",
+                    "error-msg": "Algo deu errado!"
+                }
+            },
+            "music" : {
+                "main-title" : "Música",
+                "description" : "Torne suas instruções em música",
+                "loader-label" : "Our genie is creating...",
+                "empty-label": "Nenhuma música criada.",
+                "form" : {
+                    "placeholder" : "Um solo de baixo",
+                    "btn-label": "Gerar Música",
+                    "error-msg": "Algo deu errado!"
+                }
+            },
+            "code" : {
+                "main-title" : "Código",
+                "description" : "Gere códigos usando textos descritivos",
+                "loader-label" : "Nosso gênio está desenvolvendo o código...",
+                "empty-label": "Nenhum código gerado.",
+                "form" : {
+                    "placeholder" : "Desenvolva um button component em react usando typescript e tailwindcss...",
+                    "btn-label": "Gere Código",
+                    "error-msg": "Algo deu errado!"
+                }
+            },
+            "settings" : {
+                "main-title" : "Configurações",
+                "description" : "Administrar as configurações da sua conta.",
+                "error-msg": "Algo deu errado!",
+                "content" : {
+                    "pro" : "Atualmente você está no plano profissional",
+                    "free-trial" : "Atualmente você está no plano de amostra grátis."
+                },
+                "btn-label": {
+                    "pro" : "Administrar Assinatura",
+                    "free-trial" : "Upgrade"
+                }
             }
         }
     }

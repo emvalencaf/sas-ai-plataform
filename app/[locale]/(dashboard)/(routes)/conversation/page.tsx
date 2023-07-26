@@ -4,7 +4,7 @@ import ConversationClient from "./components/ConversationClient";
 // interfaces
 export interface IConversationPageProps {
     params: {
-        Id: string,
+        locale: string,
     },
 }
 

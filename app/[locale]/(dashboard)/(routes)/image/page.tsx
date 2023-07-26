@@ -4,7 +4,7 @@ import ImageClient from "./components/ImageClient";
 // interfaces
 export interface IImagePageProps {
     params: {
-        Id: string,
+        locale: string,
     },
 }
 

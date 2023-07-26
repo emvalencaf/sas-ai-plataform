@@ -2,9 +2,13 @@
 
 // hooks
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 // custom hooks
 import { useChat, useProModal } from "@/hooks";
+
+// axios
+import axios from "axios";
 
 // zod tools
 import * as z from "zod";
@@ -17,11 +21,12 @@ import { Button } from "@/components/ui/button";
 // formSchema
 import { formSchema } from "../../constants";
 
+// toast
+import toast from "react-hot-toast";
+
 // interfaces
 import { ChatCompletionRequestMessage } from "openai";
-import axios from "axios";
-import { useCallback } from "react";
-import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 const CodeForm: React.FC = () => {
     // navigation controller
@@ -32,6 +37,8 @@ const CodeForm: React.FC = () => {
 
     // pro modal controller
     const proModal = useProModal();
+
+    const t = useTranslations("main.dashboard.code.form");
 
     // handle submit
     const onSubmit = useCallback(
@@ -66,14 +73,14 @@ const CodeForm: React.FC = () => {
                 if (error?.response?.status === 403) {
                     proModal.onOpen();
                 } else {
-                    toast.error("Something went wrong!");
+                    toast.error(t("error-msg"));
                 }
 
             } finally {
                 router.refresh();
             }
         },
-        [form, messages, setMessages, proModal, router]
+        [form, messages, setMessages, proModal, t, router]
     );
 
     if (!form) return null;
@@ -93,7 +100,7 @@ const CodeForm: React.FC = () => {
                                     <Input
                                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="Code for me a react button using tailwindcss and typescript."
+                                        placeholder={t("placeholder")}
                                         {...field}
                                     />
                                 </FormControl>
@@ -104,7 +111,7 @@ const CodeForm: React.FC = () => {
                         className="col-span-12 lg:col-span-2 w-full"
                         disabled={isLoading}
                     >
-                        Generate
+                        {t("btn-label")}
                     </Button>
                 </form>
             </Form>

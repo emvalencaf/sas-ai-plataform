@@ -12,6 +12,7 @@ import BotAvatar from "@/components/BotAvatar";
 // libs
 import { cn } from "@/lib/utils";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { useTranslations } from "next-intl";
 
 // interfaces
 export interface ICodeChatProps {
@@ -21,6 +22,8 @@ export interface ICodeChatProps {
 const CodeChat: React.FC<ICodeChatProps> = () => {
     const { messages, isLoading } = useChat();
 
+    const t = useTranslations("main.dashboard.code");
+
     return (
         <div className="space-y-4 mt-4">
             {isLoading && (
@@ -29,7 +32,7 @@ const CodeChat: React.FC<ICodeChatProps> = () => {
                 </div>
             )}
             {messages.length === 0 && !isLoading && (
-                <Empty label="No conversation started." />
+                <Empty label={t("empty-label")} />
             )}
             <div className="flex flex-col-reverse gap-y-4">
                 {messages.map((message) => (

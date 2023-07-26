@@ -11,23 +11,49 @@ export const imageFormSchema = z.object({
 export const amountOptions = [
     {
         value: "1",
-        label: "1 photo",
+        pt: {
+
+            label: "1 foto",
+        },
+        en: {
+            label: "1 photo",
+        },
     },
     {
         value: "2",
-        label: "2 photo",
+        pt: {
+            label: "2 fotos",
+        },
+        en: {
+            label: "2 photo",
+        },
     },
     {
         value: "3",
-        label: "3 photo",
+        pt: {
+            label: "3 fotos",
+        },
+        en: {
+            label: "3 photo",
+        },
     },
     {
         value: "4",
-        label: "4 photo",
+        pt: {
+            label: "4 fotos",
+        },
+        en: {
+            label: "4 photo",
+        },
     },
     {
         value: "5",
-        label: "5 photo",
+        pt: {
+            label: "5 fotos",
+        },
+        en: {
+            label: "5 photo",
+        },
     },
 ];
 

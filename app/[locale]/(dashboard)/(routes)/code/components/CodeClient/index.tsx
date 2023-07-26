@@ -1,20 +1,28 @@
 "use client";
 
+// hooks
+import { useTranslations } from "next-intl";
+
 // components
 import Heading from "@/components/Heading";
+import CodeChat from "../CodeChat";
+import CodeForm from "../CodeForm";
+
+// providers
+import { ChatProvider } from "@/contexts/ChatContext/providers";
 
 // icons
 import { Code, } from "lucide-react";
-import CodeForm from "../CodeForm";
-import { ChatProvider } from "@/contexts/ChatContext/providers";
-import CodeChat from "../CodeChat";
 
 const CodeClient: React.FC = () => {
+
+    const t = useTranslations("main.dashboard.code");
+
     return (
         <div>
             <Heading
-                title="Code"
-                description="Generate code using descriptive text."
+                title={t("main-title")}
+                description={t("description")}
                 icon={Code}
                 iconColor="text-green-700"
                 bgColor="text-green-700/10"

@@ -1,20 +1,30 @@
 "use client";
 
-// components
+// hooks
+import { useLocale, useTranslations } from "next-intl";
+
+// custom components
 import Heading from "@/components/Heading";
+
+// custom page components
+import ConversationForm from "../ConversationForm";
+import ConversationChat from "../ConversationChat";
+
+// providers
+import { ChatProvider } from "@/contexts/ChatContext/providers";
 
 // icons
 import { MessageSquare } from "lucide-react";
-import ConversationForm from "../ConversationForm";
-import { ChatProvider } from "@/contexts/ChatContext/providers";
-import ConversationChat from "../ConversationChat";
 
 const ConversationClient: React.FC = () => {
+
+    const t = useTranslations("main.dashboard.conversation");
+
     return (
         <div>
             <Heading
-                title="Conversation"
-                description="Our most advanced conversation model"
+                title={t("main-title")}
+                description={t("description")}
                 icon={MessageSquare}
                 iconColor="text-violet-500"
                 bgColor="text-violet-500/10"

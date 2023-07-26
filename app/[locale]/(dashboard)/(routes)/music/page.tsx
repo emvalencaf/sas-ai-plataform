@@ -4,7 +4,7 @@ import MusicClient from "./components/MusicClient";
 // interfaces
 export interface IMusicPageProps {
     params: {
-        Id: string,
+        locale: string,
     },
 }
 

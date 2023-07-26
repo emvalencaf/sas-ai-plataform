@@ -4,17 +4,17 @@
 import Image from "next/image";
 
 // interfaces
-export interface IEmpetyProps {
+export interface IEmptyProps {
     label: string;
 };
 
-const Empty: React.FC<IEmpetyProps> = ({ label }) => {
+const Empty: React.FC<IEmptyProps> = ({ label }) => {
     return (
         <div className="h-full p-20 flex flex-col items-center justify-center">
             <div className="relative h-72 w-72">
                 <Image
                     fill
-                    alt="Empety"
+                    alt="Empty"
                     src="/assets/logo.png"
                 />
             </div>

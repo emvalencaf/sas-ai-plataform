@@ -4,7 +4,7 @@ import CodeClient from "./components/CodeClient/";
 // interfaces
 export interface ICodePageProps {
     params: {
-        Id: string,
+        locale: string,
     },
 }
 

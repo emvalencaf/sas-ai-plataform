@@ -1,20 +1,28 @@
 "use client";
 
-// components
+// hooks
+import { useTranslations } from "next-intl";
+
+// custom components
 import Heading from "@/components/Heading";
+import VideoForm from "../VideoForm";
+import VideoContainer from "../VideoContainer";
+
+// providers
+import GenerateVideoProvider from "@/contexts/GenerateVideoContext/providers/GenerateVideoProvider";
 
 // icons
 import { VideoIcon } from "lucide-react";
-import VideoForm from "../VideoForm";
-import GenerateVideoProvider from "@/contexts/GenerateVideoContext/providers/GenerateVideoProvider";
-import VideoContainer from "../VideoContainer";
 
 const VideoClient: React.FC = () => {
+
+    const t = useTranslations("main.dashboard.video");
+
     return (
         <div>
             <Heading
-                title="Video"
-                description="Turn your prompt into video"
+                title={t("main-title")}
+                description={t("description")}
                 icon={VideoIcon}
                 iconColor="text-orange-700"
                 bgColor="text-orange-700/10"

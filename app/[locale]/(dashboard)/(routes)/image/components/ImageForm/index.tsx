@@ -29,6 +29,7 @@ import {
 import { amountOptions, imageFormSchema, resolutionOptions } from "../../constants";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
+import { useLocale, useTranslations } from "next-intl";
 
 // interfaces
 
@@ -36,9 +37,13 @@ const ImageForm: React.FC = () => {
     // navigation controller
     const router = useRouter();
 
-    const { images, setImages, form, isLoading } = useGenerateImage();
+    const { setImages, form, isLoading } = useGenerateImage();
 
     const proModal = useProModal();
+
+
+    const locale = useLocale();
+    const t = useTranslations("main.dashboard.image.form");
 
     // handle submit
     const onSubmit = useCallback(async (values: z.infer<typeof imageFormSchema>) => {
@@ -46,7 +51,6 @@ const ImageForm: React.FC = () => {
         if (!form) return null;
 
         try {
-            console.log("yo");
 
             setImages([]);
 
@@ -66,12 +70,12 @@ const ImageForm: React.FC = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                toast.error("Something went wrong!");
+                toast.error(t("error-msg"));
             }
         } finally {
             router.refresh();
         }
-    },[form, setImages, proModal, router]);
+    },[form, setImages, proModal, router, t]);
 
     if (!form) return null;
 
@@ -90,7 +94,7 @@ const ImageForm: React.FC = () => {
                                     <Input
                                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="A picture of a horse in Swiss alps?"
+                                        placeholder={t("placeholder")}
                                         {...field}
                                     />
                                 </FormControl>
@@ -118,7 +122,7 @@ const ImageForm: React.FC = () => {
                                     <SelectContent>
                                         {amountOptions.map((option) => (
                                             <SelectItem key={option.value} value={option.value} >
-                                                {option.label}
+                                                {option[locale as "pt" | "en"].label}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
@@ -159,7 +163,7 @@ const ImageForm: React.FC = () => {
                         className="col-span-12 lg:col-span-2 w-full"
                         disabled={isLoading}
                     >
-                        Generate
+                        {t("btn-label")}
                     </Button>
                 </form>
             </Form>

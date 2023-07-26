@@ -1,5 +1,8 @@
 "use client";
 
+// hooks
+import { useTranslations } from "next-intl";
+
 // custom hooks
 import { useGenerateImage } from "@/hooks";
 
@@ -12,10 +15,9 @@ import Loader from "@/components/Loader";
 
 // ui components
 import { Card, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-// libs
-import { cn } from "@/lib/utils";
-import { Button } from "../../../../../../components/ui/button";
+// icons
 import { Download } from "lucide-react";
 
 // interfaces
@@ -26,15 +28,17 @@ export interface IImageContainerProps {
 const ImageContainer: React.FC<IImageContainerProps> = () => {
     const { images, isLoading } = useGenerateImage();
 
+    const t = useTranslations("main.dashboard.image");
+
     return (
         <div className="space-y-4 mt-4">
             {isLoading && (
                 <div className="p-8 rounded lg w-full flex items-center justify-center bg-muted">
-                    <Loader label="Our genie is creating..." />
+                    <Loader label={t("loader-label")} />
                 </div>
             )}
             {images.length === 0 && !isLoading && (
-                <Empty label="No image created." />
+                <Empty label={t("empty-label")} />
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
                 {images.map((src) => (

@@ -11,6 +11,7 @@ import BotAvatar from "@/components/BotAvatar";
 
 // libs
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 // interfaces
 export interface IVideoContainerProps {
@@ -20,15 +21,17 @@ export interface IVideoContainerProps {
 const VideoContainer: React.FC<IVideoContainerProps> = () => {
     const { video, isLoading } = useGenerateVideo();
 
+    const t = useTranslations("main.dashboard.video")
+
     return (
         <div className="space-y-4 mt-4">
             {isLoading && (
                 <div className="p-8 rounded lg w-full flex items-center justify-center bg-muted">
-                    <Loader label="Our genie is creating a master piece... " />
+                    <Loader label={t("loader-label")} />
                 </div>
             )}
             {!video && !isLoading && (
-                <Empty label="No video generated." />
+                <Empty label={t("empty-label")} />
             )}
             {
                 video && (

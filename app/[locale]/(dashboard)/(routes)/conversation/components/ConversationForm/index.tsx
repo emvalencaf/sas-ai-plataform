@@ -3,6 +3,7 @@
 // hooks
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { useTranslations } from "next-intl";
 
 // custom hooks
 import { useChat, useProModal } from "@/hooks";
@@ -37,6 +38,9 @@ const ConversationForm: React.FC = () => {
     // pro modal controller
     const proModal = useProModal();
 
+    // i18n
+    const t = useTranslations("main.dashboard.conversation.form");
+
     // handle submit
     const onSubmit = useCallback(
         async (values: z.infer<typeof formSchema>) => {
@@ -70,13 +74,13 @@ const ConversationForm: React.FC = () => {
                 if (error?.response?.status === 403) {
                     proModal.onOpen();
                 } else {
-                    toast.error("Something went wrong!");
+                    toast.error(t("error-msg"));
                 }
             } finally {
                 router.refresh();
             }
         },
-        [form, messages, setMessages, proModal, router]
+        [form, messages, setMessages, proModal, router, t]
     );
 
     if (!form) return null;
@@ -96,7 +100,7 @@ const ConversationForm: React.FC = () => {
                                     <Input
                                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="Who is Ryan Gosling?"
+                                        placeholder={t("placeholder")}
                                         {...field}
                                     />
                                 </FormControl>
@@ -107,7 +111,7 @@ const ConversationForm: React.FC = () => {
                         className="col-span-12 lg:col-span-2 w-full"
                         disabled={isLoading}
                     >
-                        Generate
+                        {t("btn-label")}
                     </Button>
                 </form>
             </Form>

@@ -3,6 +3,7 @@
 import { Settings } from "lucide-react";
 import Heading from "@/components/Heading";
 import SubscriptionButton from "../SubscriptionButton";
+import { useTranslations } from "next-intl";
 
 // interfaces
 export interface ISettingsClientProps {
@@ -10,11 +11,14 @@ export interface ISettingsClientProps {
 };
 
 const SettingsClient: React.FC<ISettingsClientProps> = ({ isPro, }) => {
+
+    const t = useTranslations("main.dashboard.settings");
+
     return (
         <div>
             <Heading
-                title="Settings"
-                description="Manage account settings."
+                title={t("main-title")}
+                description={t("description")}
                 icon={Settings}
                 iconColor="text-gray-700"
                 bgColor="bg-gray-700/10"
@@ -22,8 +26,8 @@ const SettingsClient: React.FC<ISettingsClientProps> = ({ isPro, }) => {
             <div className="px-4 lg:px-8 space-y-4">
                 <div className="text-muted-foreground text-sm">
                     {isPro
-                        ? "You are currently on a pro plan."
-                        : "You are currently on a free plan."}
+                        ? t("content.pro")
+                        : t("content.free-trial")}
                 </div>
                 <SubscriptionButton isPro={isPro} />
             </div>

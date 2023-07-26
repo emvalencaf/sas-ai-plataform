@@ -14,7 +14,7 @@ import * as z from "zod";
 // interfaces
 import { ChatCompletionRequestMessage } from "openai";
 
-import { formSchema } from "../../../../app/(dashboard)/(routes)/conversation/constants";
+import { formSchema } from "@/app/[locale]/(dashboard)/(routes)/conversation/constants";
 
 interface IConversationChatProvider {
     children: React.ReactNode;

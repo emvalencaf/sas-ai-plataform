@@ -2,6 +2,7 @@
 
 // hooks
 import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 
 // next components
 import Image from "next/image";
@@ -30,6 +31,8 @@ export interface ISidebarProps {
 const Sidebar: React.FC<ISidebarProps> = ({ apiLimitCount, isPro, }) => {
     // get pathname
     const pathname = usePathname();
+
+    const locale = useLocale();
 
     return (
         <div className="spcae-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -66,7 +69,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ apiLimitCount, isPro, }) => {
                                 <route.icon
                                     className={cn("h-5 w-5 mr-3", route.color)}
                                 />
-                                {route.label}
+                                {route[locale as "en" | "pt"].label}
                             </div>
                         </Link>
                     ))}

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 // icons
 import { Zap } from "lucide-react";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 // interfaces
 interface ISubscriptionButtonProps {
@@ -23,6 +24,8 @@ const SubscriptionButton: React.FC<ISubscriptionButtonProps> = ({
 }) => {
     const [isLoading, setIsLoading] = useState(false);
 
+    const t = useTranslations("main.dashboard.settings");
+
     const onClick = async () => {
         setIsLoading(true);
 
@@ -32,7 +35,7 @@ const SubscriptionButton: React.FC<ISubscriptionButtonProps> = ({
             window.location.href = response.data.url;
         } catch (error: any) {
             console.log("[BILLING_ERROR]:", error);
-            toast.error("Something went wrong");
+            toast.error(t("error-msg"));
         } finally {
             setIsLoading(false);
         }
@@ -44,7 +47,7 @@ const SubscriptionButton: React.FC<ISubscriptionButtonProps> = ({
             onClick={onClick}
             variant={isPro ? "default" : "premium"}
         >
-            {isPro ? "Manage Subscription" : "Upgrade"}{" "}
+            {isPro ? t("btn-label.pro") : t("btn-label.free-trial")}
             {!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}
         </Button>
     );

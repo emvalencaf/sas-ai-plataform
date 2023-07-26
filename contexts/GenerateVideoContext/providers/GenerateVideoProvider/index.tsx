@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 // interfaces
-import { videoFormSchema } from "@/app/(dashboard)/(routes)/video/constants";
+import { videoFormSchema } from "@/app/[locale]/(dashboard)/(routes)/video/constants";
 
 interface IGenerateVideoProvider {
     children: React.ReactNode;

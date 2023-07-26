@@ -29,6 +29,86 @@
                     "conditional-label" : "for free"
                 },
                 "paragraph" : "No credit card required."
+            },
+            "content" : {
+                "availabe-services" : {
+                    "main-title" : "Available Services"
+                },
+                "testimonials" : {
+                    "main-title" : "Testimonials"
+                }
+            }
+        },
+        "dashboard" : {
+            "index" : {
+                "main-title" : "Explore the power of AI",
+                "sub-title" : "Use the smartest AI - Experience the power of AI"
+            },
+            "conversation" : {
+                "main-title" : "Converse",
+                "description" : "Our most advanced conversation model",
+                "form" : {
+                    "placeholder" : "Who is Ryan Gosling?",
+                    "btn-label": "Generate",
+                    "error-msg": "Something went wrong!"
+                }
+            },
+            "image" : {
+                "main-title" : "Image",
+                "description" : "Turn your prompt into an image",
+                "loader-label" : "Our genie is creating...",
+                "empty-label": "No image created.",
+                "form" : {
+                    "placeholder" : "A picture of a horse in Swiss alps",
+                    "btn-label": "Generate",
+                    "error-msg": "Something went wrong!"
+                }
+            },
+            "video" : {
+                "main-title" : "Video",
+                "description" : "Turn your prompt into an video",
+                "loader-label" : "Our genie is creating...",
+                "empty-label": "No Video created.",
+                "form" : {
+                    "placeholder" : "A cat jumping",
+                    "btn-label": "Generate",
+                    "error-msg": "Something went wrong!"
+                }
+            },
+            "music" : {
+                "main-title" : "Music",
+                "description" : "Turn your prompt into a music",
+                "loader-label" : "Our genie is creating...",
+                "empty-label": "No Music created.",
+                "form" : {
+                    "placeholder" : "A bass solo",
+                    "btn-label": "Generate",
+                    "error-msg": "Something went wrong!"
+                }
+            },
+            "code" : {
+                "main-title" : "Code",
+                "description" : "Generate code using descriptive text",
+                "loader-label" : "Our genie is creating...",
+                "empty-label": "No code generated.",
+                "form" : {
+                    "placeholder" : "Code for me a react button using tailwindcss and typescript",
+                    "btn-label": "Generate",
+                    "error-msg": "Something went wrong!"
+                }
+            },
+            "settings" : {
+                "main-title" : "Settings",
+                "description" : "Manage account settings.",
+                "error-msg": "Something went wrong!",
+                "content" : {
+                    "pro" : "You are currently on a pro plan.",
+                    "free-trial" : "You are currently on a free plan."
+                },
+                "btn-label": {
+                    "pro" : "Manage Subscription",
+                    "free-trial" : "Upgrade"
+                }
             }
         }
     }

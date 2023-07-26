@@ -22,6 +22,7 @@ import { musicFormSchema } from "../../constants";
 import axios from "axios";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 const MusicForm: React.FC = () => {
     // navigation controller
@@ -31,6 +32,8 @@ const MusicForm: React.FC = () => {
     const { setMusic, form, isLoading } = useGenerateMusic();
 
     const proModal = useProModal();
+    
+    const t = useTranslations("main.dashboard.music.form");
 
     const onSubmit = useCallback(
         async (values: z.infer<typeof musicFormSchema>) => {
@@ -51,14 +54,14 @@ const MusicForm: React.FC = () => {
                 if (error?.response?.status === 403) {
                     proModal.onOpen();
                 } else {
-                    toast.error("Something went wrong!");
+                    toast.error(t("error-msg"));
                 }
 
             } finally {
                 router.refresh();
             }
         },
-        [form, setMusic, proModal, router]
+        [form, setMusic, proModal, router, t]
     );
 
     if (!form) return null;
@@ -78,7 +81,7 @@ const MusicForm: React.FC = () => {
                                     <Input
                                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                         disabled={isLoading}
-                                        placeholder="A guitar solo?"
+                                        placeholder={t("placeholder")}
                                         {...field}
                                     />
                                 </FormControl>
@@ -89,7 +92,7 @@ const MusicForm: React.FC = () => {
                         className="col-span-12 lg:col-span-2 w-full"
                         disabled={isLoading}
                     >
-                        Generate
+                        {t("btn-label")}
                     </Button>
                 </form>
             </Form>

@@ -13,7 +13,7 @@ import * as z from "zod";
 
 // interfaces
 
-import { imageFormSchema } from "../../../../app/(dashboard)/(routes)/image/constants";
+import { imageFormSchema } from "@/app/[locale]/(dashboard)/(routes)/image/constants";
 
 interface IGenerateImageProvider {
     children: React.ReactNode;

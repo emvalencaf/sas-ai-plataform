@@ -10,15 +10,26 @@ import {
     VideoIcon,
 } from "lucide-react";
 
+// interfaces
 interface INavRoutes {
-    label: string;
+    pt: {
+        label: string;
+    };
+    en: {
+        label: string;
+    };
     icon: LucideIcon;
     href: string;
     color: string;
 }
 
 interface ITool {
-    label: string;
+    pt: {
+        label: string;
+    };
+    en: {
+        label: string;
+    };
     icon: LucideIcon;
     href: string;
     color: string;
@@ -26,129 +37,243 @@ interface ITool {
 }
 
 interface IAiService {
-    label: string;
+    pt: {
+        label: string;
+        description: string;
+    };
+    en: {
+        label: string;
+        description: string;
+    };
     icon: LucideIcon;
     color: string;
     bgColor: string;
+}
+
+interface ITestimonials {
+    name: string;
+    avatar: string;
+    title: string;
     description: string;
 }
 
 export const SideBarMenuRoutes: INavRoutes[] = [
     {
-        label: "Dashboard",
+        pt: {
+
+            label: "Dashboard",
+        },
+        en: {
+
+            label: "Dashboard",
+        },
         icon: LayoutDashboard,
         href: "/dashboard",
         color: "text-sky-500",
     },
     {
-        label: "Conversation",
+        pt: {
+            label: "Conversar",
+        },
+        en: {
+            label: "Conversation",
+        },
         icon: MessageSquare,
         href: "/conversation",
         color: "text-violet-500",
     },
     {
-        label: "Image Generation",
+        pt: {
+            label: "Geração de Imagem",
+        },
+        en: {
+            label: "Image Generation",
+        },
         icon: ImageIcon,
         href: "/image",
         color: "text-pink-700",
     },
     {
-        label: "Video Generation",
+        pt: {
+            label: "Geração de Vídeo",
+        },
+        en: {
+            label: "Video Generation",
+        },
         icon: VideoIcon,
         href: "/video",
         color: "text-orange-700",
     },
     {
-        label: "Music Generation",
+        pt: {
+            label: "Geração de Música",
+        },
+        en: {
+            label: "Music Generation",
+        },
         icon: Music,
         href: "/music",
         color: "text-emerald-500",
     },
     {
-        label: "Code Generation",
+        pt: {
+            label: "Geração de Código",
+        },
+        en: {
+            label: "Code Generation",
+        },
         icon: Code,
         href: "/code",
         color: "text-green-700",
     },
 
     {
-        label: "Settings",
+        pt: {
+            label: "Configurações",
+        },
+        en: {
+            label: "Settings",
+        },
         icon: Settings,
         href: "/settings",
         color: "text-orange-700",
     },
 ];
 
-
 export const AIServices: IAiService[] = [
     {
-        label: "Conversation",
+        pt: {
+            label: "Conversar",
+            description:
+                "Bata um papo com nosso mais avançado um chatbot turbinado com a mais poderosa Inteligência Artificial no mercado. Descubra a informação que você não acharia com facilidade no Google.",
+        },
+        en: {
+            label: "Conversation",
+            description:
+                "Have a chat with our most advanced chatbot powered by the most powerful Artificial Intelligence on the market. Discover information you wouldn't easily find on Google.",
+        },
         icon: MessageSquare,
         color: "text-violet-500",
         bgColor: "bg-violet-500/10",
-        description: "Chat with our most advanced AI chatbot to find out info you won't find easy on google",
     },
     {
-        label: "Image Generation",
-        icon: ImageIcon,
+        pt: {
+            label: "Geração de Imagem",
+            description:
+                "Instrua a nossa AI a criar aquela imagem que está na sua cabeça em diferentes resoluções.",
+        },
+        en: {
+            label: "Image Generation",
+            description:
+                "Prompt our AI to create that image in your mind at different resolutions.",
+        },
         color: "text-pink-700",
         bgColor: "bg-pink-700/10",
-        description: "Give our AI your guides to make that pretty image on the backside of your head",
+        icon: ImageIcon,
     },
     {
-        label: "Video Generation",
+        pt: {
+            label: "Geração de Vídeo",
+            description:
+                "Crie vídeos incríveis por meio da nossa IA por meio de instruções.",
+        },
+        en: {
+            label: "Video Generation",
+            description:
+                "Create amazing videos through our AI with your prompts.",
+        },
         icon: VideoIcon,
         color: "text-orange-700",
         bgColor: "bg-orange-700/10",
-        description: "Create amazings vidos by only prompting to our AI what you wanna see",
     },
     {
-        label: "Music Generation",
+        pt: {
+            label: "Geração de Música",
+            description:
+                "Crie músicas (instrumentais) por meio de instruções a nossa IA",
+        },
+        en: {
+            label: "Music Generation",
+            description:
+                "You can grasp the song you want to make by prompt to our AI",
+        },
         icon: Music,
         color: "text-emerald-500",
         bgColor: "bg-emerald-500/10",
-        description: "You can grasp the song you want to make by prompt to our AI",
     },
     {
-        label: "Code Generation",
+        pt: {
+            label: "Geração de Código",
+            description:
+                "Utilize esse serviço para criar códigos que facilitarão sua jornada de trabalho ou aprenizado",
+        },
+        en: {
+            label: "Code Generation",
+            description:
+                "Utilize this service to create codes that will ease your work or learning journey.",
+        },
         icon: Code,
         color: "text-green-700",
         bgColor: "bg-green-700/10",
-        description: "Use our code generation to get develop more codes for your application",
     },
-]
+];
 
 export const tools: ITool[] = [
     {
-        label: "Conversation",
+        pt: {
+            label: "Conversar",
+        },
+        en: {
+            label: "Conversation",
+        },
         icon: MessageSquare,
         color: "text-violet-500",
         bgColor: "bg-violet-500/10",
         href: "/conversation",
     },
     {
-        label: "Image Generation",
+        pt: {
+            label: "Geração de Imagem",
+        },
+        en: {
+            label: "Image Generation",
+        },
         icon: ImageIcon,
         color: "text-pink-700",
         bgColor: "bg-pink-700/10",
         href: "/image",
     },
     {
-        label: "Video Generation",
+        pt: {
+            label: "Geração de Vídeo",
+        },
+        en: {
+            label: "Video Generation",
+        },
         icon: VideoIcon,
         color: "text-orange-700",
         bgColor: "bg-orange-700/10",
         href: "/video",
     },
     {
-        label: "Music Generation",
+        pt: {
+            label: "Geração de Música",
+        },
+        en: {
+            label: "Music Generation",
+        },
         icon: Music,
         color: "text-emerald-500",
         bgColor: "bg-emerald-500/10",
         href: "/music",
     },
     {
-        label: "Code Generation",
+        pt: {
+            label: "Geração de Código",
+        },
+        en: {
+            label: "Code Generation",
+        },
         icon: Code,
         color: "text-green-700",
         bgColor: "bg-green-700/10",
@@ -158,7 +283,7 @@ export const tools: ITool[] = [
 
 export const MAX_FREE_COUNTS = 5;
 
-export const testimonials = [
+export const testimonials: ITestimonials[] = [
     {
         name: "Joe Doe",
         avatar: "JD",
