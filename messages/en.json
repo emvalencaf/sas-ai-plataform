@@ -6,7 +6,7 @@
     "header": {
         "navbar": {
             "landing": {
-                "dashboard-btn" : "Get Start",
+                "dashboard-btn" : "Get Started",
                 "sign-in-btn" : "Sign in",
                 "sign-up-btn" : "Sign up"
             }
