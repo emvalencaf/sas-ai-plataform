@@ -8,7 +8,7 @@ import * as z from "zod";
 
 // interface
 import { UseFormReturn } from "react-hook-form";
-import { videoFormSchema } from "@/app/(dashboard)/(routes)/video/constants";
+import { videoFormSchema } from "@/app/[locale]/(dashboard)/(routes)/video/constants";
 
 interface IGenerateVideoContext {
     video: string;

@@ -8,7 +8,7 @@ import * as z from "zod";
 
 // interface
 import { UseFormReturn } from "react-hook-form";
-import { imageFormSchema } from "../../app/(dashboard)/(routes)/image/constants";
+import { imageFormSchema } from "@/app/[locale]/(dashboard)/(routes)/image/constants";
 
 interface IGenerateImageContext {
     images: string[];

@@ -8,7 +8,7 @@ import * as z from "zod";
 
 // interface
 import { UseFormReturn } from "react-hook-form";
-import { musicFormSchema } from "../../app/(dashboard)/(routes)/music/constants";
+import { musicFormSchema } from "@/app/[locale]/(dashboard)/(routes)/music/constants";
 
 interface IGenerateMusicContext {
     music: string;

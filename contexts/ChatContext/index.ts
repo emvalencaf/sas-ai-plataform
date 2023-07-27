@@ -9,7 +9,7 @@ import * as z from "zod";
 // interface
 import { ChatCompletionRequestMessage } from "openai";
 import { UseFormReturn } from "react-hook-form";
-import { formSchema } from "../../app/(dashboard)/(routes)/conversation/constants";
+import { formSchema } from "@/app/[locale]/(dashboard)/(routes)/conversation/constants";
 
 interface IChatContext {
     messages: ChatCompletionRequestMessage[];
