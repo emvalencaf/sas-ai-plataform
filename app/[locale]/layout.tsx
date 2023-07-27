@@ -1,5 +1,6 @@
+// styles
 import "../globals.css";
-import type { Metadata } from "next";
+
 import { Inter } from "next/font/google";
 
 // providers
@@ -10,8 +11,13 @@ import CrispProvider from "@/contexts/CrispContext/providers";
 
 // next-intl
 import { getTranslator } from "next-intl/server";
-import { NextIntlClientProvider, useLocale } from "next-intl";
+import { NextIntlClientProvider, } from "next-intl";
+
+// next navigation
 import { notFound } from "next/navigation";
+
+// Clerk localization
+import { enUS, ptBR } from "@clerk/localizations";
 
 // fonts
 const inter = Inter({ subsets: ["latin"] });
@@ -43,7 +49,10 @@ export default async function RootLayout({
         locale: string;
     };
 }) {
+
     const { locale } = params;
+
+    const lng = locale === "pt" ? ptBR : enUS;
 
     let messages;
 
@@ -55,7 +64,7 @@ export default async function RootLayout({
     }
 
     return (
-        <ClerkProvider>
+        <ClerkProvider localization={lng}>
             <html lang="en">
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <body className={inter.className}>
