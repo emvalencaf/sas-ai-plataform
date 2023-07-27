@@ -1,6 +1,7 @@
 "use client";
 
 // hooks
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 // custom hooks
@@ -23,69 +24,64 @@ import { cn } from "@/lib/utils";
 
 // icons
 import { Check, Zap } from "lucide-react";
+
+// toast
 import toast from "react-hot-toast";
 
 const ProModal: React.FC = () => {
-
     // states
     const [isLoading, setIsLoading] = useState(false);
 
     const proModal = useProModal();
 
-    const onSubscribe = async () => {
+    const locale = useLocale();
+    const t = useTranslations("main.dashboard.conversation.form")
 
+    const onSubscribe = async () => {
         setIsLoading(true);
         try {
-            
             const response = await axios.get("/api/stripe");
 
             window.location.href = response.data?.url;
-
         } catch (error: any) {
             console.log("[STRIPE_CLIENT_ERROR]:", error);
-            toast.error("Something went wrong");
+            toast.error(t("error-msg"));
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
-    }
+    };
 
-    return <Modal
-        isOpen={proModal.isOpen}
-        onClose={proModal.onClose}
-        title="Upgrade your personal Genie"
-        badgeLabel="pro"
-        content={tools.map((tool) => (
-            <Card
-                key={tool.href}
-                className="p-3 border-black/5 flex items-center justify-between"
-            >
-                <div className="flex items-center gap-x-4">
-                    <div
-                        className={cn(
-                            "p-2 w-fit rounded-md",
-                            tool.bgColor
-                        )}
-                    >
-                        <tool.icon
-                            className={cn(
-                                "w-6 h-6",
-                                tool.color
-                            )}
-                        />
+    return (
+        <Modal
+            isOpen={proModal.isOpen}
+            onClose={proModal.onClose}
+            title="Upgrade your personal Genie"
+            badgeLabel="pro"
+            content={tools.map((tool) => (
+                <Card
+                    key={tool.href}
+                    className="p-3 border-black/5 flex items-center justify-between"
+                >
+                    <div className="flex items-center gap-x-4">
+                        <div
+                            className={cn("p-2 w-fit rounded-md", tool.bgColor)}
+                        >
+                            <tool.icon className={cn("w-6 h-6", tool.color)} />
+                        </div>
+                        <div className="font-semibold text-sm">
+                            {tool[locale as "pt" | "en"].label}
+                        </div>
                     </div>
-                    <div className="font-semibold text-sm">
-                        {tool.label}
-                    </div>
-                </div>
-                <Check className="text-primary w-5 h-5" />
-            </Card>
-        ))}
-        btnLabel="Upgrade"
-        btnIcon={Zap}
-        btnFn={onSubscribe}
-        isLoading={isLoading}
-    />
-/*
+                    <Check className="text-primary w-5 h-5" />
+                </Card>
+            ))}
+            btnLabel="Upgrade"
+            btnIcon={Zap}
+            btnFn={onSubscribe}
+            isLoading={isLoading}
+        />
+    );
+    /*
     return (
         <Dialog open>
             <DialogContent>
