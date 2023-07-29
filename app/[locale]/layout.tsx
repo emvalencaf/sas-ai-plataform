@@ -11,7 +11,7 @@ import CrispProvider from "@/contexts/CrispContext/providers";
 
 // next-intl
 import { getTranslator } from "next-intl/server";
-import { NextIntlClientProvider, } from "next-intl";
+import { NextIntlClientProvider, useLocale, } from "next-intl";
 
 // next navigation
 import { notFound } from "next/navigation";
@@ -50,18 +50,22 @@ export default async function RootLayout({
     };
 }) {
 
-    const { locale } = params;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const locale = useLocale();
+
+    if (params.locale !== locale) return notFound();
 
     const lng = locale === "pt" ? ptBR : enUS;
 
     let messages;
 
     try {
-        messages = (await import(`@/messages/${locale}.json`)).default;
-    } catch (error: any) {
-        console.log("[NEXINTL_ERROR]", error);
+        messages = (await import(`../../messages/${locale}.json`)).default;
+    } catch (err: any) {
+        console.log(err);
         notFound();
     }
+
 
     return (
         <ClerkProvider localization={lng}>
