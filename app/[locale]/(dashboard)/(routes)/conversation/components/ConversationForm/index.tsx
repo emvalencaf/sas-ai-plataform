@@ -57,7 +57,6 @@ const ConversationForm: React.FC = () => {
                 // insert new chat message into chat
                 const newMessages = [...messages, userMessage];
                 setMessages(newMessages);
-                console.log("new messages in form", newMessages);
 
                 // getting chatbot response
                 const response: AxiosResponse<string> = await axios.post(`/api/conversation`, {
