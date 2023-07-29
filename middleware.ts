@@ -11,7 +11,13 @@ const intlMiddleware = createMiddleware({
 })
 
 export default authMiddleware({
-    beforeAuth: (req) => intlMiddleware(req),
+    beforeAuth: (req) => {
+        const url = new URL(req.url);
+        
+        if (url.pathname === "/api") return;
+
+        intlMiddleware(req)
+    },
     publicRoutes: ["/","/:locale", "/:locale/sign-in", "/:locale/sign-up", "/api/webhook"],
 });
 

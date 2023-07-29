@@ -65,7 +65,7 @@ export default async function RootLayout({
 
     return (
         <ClerkProvider localization={lng}>
-            <html lang="en">
+            <html lang={locale}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <body className={inter.className}>
                         <ToastProvider />
