@@ -8,17 +8,16 @@ import createMiddleware from "next-intl/middleware";
 const intlMiddleware = createMiddleware({
     locales: ["en", "pt"],
     defaultLocale: "en",
-})
+});
 
 export default authMiddleware({
     beforeAuth: (req) => {
-        const url = new URL(req.url);
-        
-        if (url.pathname === "/api") return;
 
-        intlMiddleware(req)
+        if (req.nextUrl.pathname.includes("api")) return null;
+
+        return intlMiddleware(req);
     },
-    publicRoutes: ["/","/:locale", "/:locale/sign-in", "/:locale/sign-up", "/api/webhook"],
+    publicRoutes: ["/", "/:locale/sign-in", "/:locale/sign-up", "/api/webhook"],
 });
 
 export const config = {
