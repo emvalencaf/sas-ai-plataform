@@ -3,7 +3,7 @@
 // hooks
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 // custom hooks
 import { useChat, useProModal } from "@/hooks";
@@ -40,7 +40,6 @@ const ConversationForm: React.FC = () => {
     const proModal = useProModal();
 
     // i18n
-    const locale = useLocale();
     const t = useTranslations("main.dashboard.conversation.form");
 
     // handle submit
@@ -64,7 +63,6 @@ const ConversationForm: React.FC = () => {
                 const response: AxiosResponse<string> = await axios.post(`/api/conversation`, {
                     messages: userMessage,
                     firstMsg,
-                    locale,
                 });
 
                 setFirstMsg(false);
@@ -89,7 +87,7 @@ const ConversationForm: React.FC = () => {
                 router.refresh();
             }
         },
-        [form, messages, setMessages, proModal, router, locale, t, firstMsg]
+        [form, messages, setMessages, proModal, router, t, firstMsg]
     );
 
     if (!form) return null;
