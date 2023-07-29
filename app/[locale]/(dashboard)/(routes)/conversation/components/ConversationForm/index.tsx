@@ -2,8 +2,8 @@
 
 // hooks
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
-import { useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 // custom hooks
 import { useChat, useProModal } from "@/hooks";
@@ -12,7 +12,7 @@ import { useChat, useProModal } from "@/hooks";
 import * as z from "zod";
 
 // axios
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // toast
 import toast from "react-hot-toast";
@@ -34,11 +34,13 @@ const ConversationForm: React.FC = () => {
 
     // chat messages states
     const { messages, setMessages, form, isLoading } = useChat();
+    const [firstMsg, setFirstMsg] = useState<boolean>(true);
 
     // pro modal controller
     const proModal = useProModal();
 
     // i18n
+    const locale = useLocale();
     const t = useTranslations("main.dashboard.conversation.form");
 
     // handle submit
@@ -55,18 +57,25 @@ const ConversationForm: React.FC = () => {
 
                 // insert new chat message into chat
                 const newMessages = [...messages, userMessage];
+                setMessages(newMessages);
+                console.log("new messages in form", newMessages);
 
                 // getting chatbot response
-                const response = await axios.post("/api/conversation", {
-                    mesages: newMessages,
+                const response: AxiosResponse<string> = await axios.post(`/api/conversation`, {
+                    messages: userMessage,
+                    firstMsg,
+                    locale,
                 });
+
+                setFirstMsg(false);
 
                 setMessages((current) => [
                     ...current,
-                    userMessage,
-                    response.data,
+                    {
+                        role: "assistant",
+                        content: response.data,
+                    },
                 ]);
-
                 form.reset();
             } catch (error: any) {
                 console.log("[CONVERSATION_ERROR]:", error); // dev console log
@@ -80,7 +89,7 @@ const ConversationForm: React.FC = () => {
                 router.refresh();
             }
         },
-        [form, messages, setMessages, proModal, router, t]
+        [form, messages, setMessages, proModal, router, locale, t, firstMsg]
     );
 
     if (!form) return null;

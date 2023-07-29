@@ -8,6 +8,7 @@ import { checkSubscription } from "@/lib/subscription";
 
 // openai tools
 import { Configuration, OpenAIApi } from "openai";
+import { runLLM } from "../../langchain/llm";
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY!,
@@ -23,7 +24,9 @@ export async function POST(
         const { userId } = auth();
         
         const body = await req.json();
-        const { messages } = body;
+        const { messages, locale, firstMsg } = body;
+
+        console.log("messages on api: ", messages);
 
         if (!userId) return new NextResponse("Unauthorized", { status: 401, });
 
@@ -36,14 +39,13 @@ export async function POST(
             status: 403,
         });
 
-        const response = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages,
-        });
+        const response = await runLLM(messages.content, locale, firstMsg);
+
+        console.log("response: ", response);
 
         if (!isPro)  await increaseApiLimit();
 
-        return NextResponse.json(response.data.choices[0].message);
+        return NextResponse.json(response.response);
 
     } catch (error:any) {
         console.log("[CONVERSATION_ERROR]", error);
