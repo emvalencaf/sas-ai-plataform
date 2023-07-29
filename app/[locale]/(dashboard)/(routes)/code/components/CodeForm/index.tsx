@@ -54,15 +54,15 @@ const CodeForm: React.FC = () => {
 
                 // insert new chat message into chat
                 const newMessages = [...messages, userMessage];
+                setMessages(newMessages);
 
                 // getting chatbot response
                 const response = await axios.post("/api/code", {
-                    mesages: newMessages,
+                    messages: newMessages,
                 });
 
                 setMessages((current) => [
                     ...current,
-                    userMessage,
                     response.data,
                 ]);
 
