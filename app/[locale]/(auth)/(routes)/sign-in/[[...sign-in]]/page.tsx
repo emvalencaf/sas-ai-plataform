@@ -14,7 +14,7 @@ const SignInPage: React.FC = () => {
     const locale = useLocale();
 
     return (
-        <>
+        <div className="flex flex-col gap-6">
             <SignIn
                 path={`/${locale}${process.env
                     .NEXT_PUBLIC_CLERK_SIGN_IN_URL!!}`}
@@ -23,7 +23,7 @@ const SignInPage: React.FC = () => {
                 afterSignInUrl={`/${locale}${process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL}`}
             />
             <DemoSignInButton />
-        </>
+        </div>
     );
 };
 
