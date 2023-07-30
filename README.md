@@ -1,34 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SAAS AI PLATAFORM
 
-## Getting Started
+- [Documentation in English](#documentation-in-english)
+- [Documentação em Português](#documentacão-em-português)
+- [DEMO](https://saas-ai-plataform.vercel.app)
 
-First, run the development server:
+## Documentation in English
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### About the Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A SaaS (Software as a Service) platform that allows users to consume the following services:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Chatbot (interact with an AI);
+- Image Generation;
+- Code Generation;
+- Music Generation;
+- Video Generation.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To use these services, users must register on the platform and can use the services for free up to 5 times without the need to purchase a monthly subscription.
 
-## Learn More
+### Features
+- [x] Chatbot developed using the OpenAI API;
+- [x] Chatbot remembers user interactions;
+- [x] Code generation using the OpenAI API;
+- [x] Image generation using the DALL-E API;
+- [x] Music generation using the Replicate API;
+- [x] Video generation using the Replicate API;
+- [x] Authentication system using Clerk;
+- [x] Subscription system integrated with Stripe;
+- [x] Portuguese and English version for the SaaS.
 
-To learn more about Next.js, take a look at the following resources:
+#### Considerations about the Features
+The chatbot's memory is stored in the application's memory, therefore, it does not persist in a database or in the browser (sessions, cookies, or localStorage).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentação em Português
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Sobre o Projeto
 
-## Deploy on Vercel
+Uma plataforma SaaS (Software como Serviço) que permite aos usuários consumirem os seguintes serviços:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Chatbot (conversar com uma IA);
+- Geração de Imagem;
+- Geração de Código;
+- Geração de Música;
+- Geração de Vídeo.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Para o consumo desses serviços, os usuários deverão registrar-se na plataforma e poderão usar os serviços gratuitamente até 5 vezes, sem a necessidade de comprar uma assinatura mensal.
+
+### Recursos (ou Funcionalidades)
+- [x] Chatbot desenvolvido usando a API do OpenAI;
+- [x] O Chatbot se lembra das iterações realizadas pelo usuário;
+- [x] Geração de códigos usando a API do OpenAI;
+- [x] Geração de imagens usando a API do DALL-E;
+- [x] Geração de músicas usando a API do Replicate;
+- [x] Geração de vídeos usando a API do Replicate;
+- [x] Sistema de autenticação usando o Clerk;
+- [x] Sistema de Assinatura integrado ao Stripe;
+- [x] Internacionalização, versões em português e inglês do SaaS.
+
+#### Considerações sobre as Funcionalidades
+A memória do chatbot fica armazenada na memória da aplicação, portanto, não persiste em um banco de dados ou no navegador (sessions, cookies ou localStorage).
+
+## [DEMO](https://saas-ai-plataform.vercel.app)
