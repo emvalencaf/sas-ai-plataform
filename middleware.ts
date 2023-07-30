@@ -12,12 +12,18 @@ const intlMiddleware = createMiddleware({
 
 export default authMiddleware({
     beforeAuth: (req) => {
-
         if (req.nextUrl.pathname.includes("api")) return null;
 
         return intlMiddleware(req);
     },
-    publicRoutes: ["/", "/:locale/sign-in", "/:locale/sign-up", "/api/webhook"],
+    publicRoutes: [
+        "/",
+        "/:locale",
+        "/:locale/sign-up/verify-email-address",
+        "/:locale/sign-up",
+        "/:locale/sign-in",
+        "/api/webhook",
+    ],
 });
 
 export const config = {

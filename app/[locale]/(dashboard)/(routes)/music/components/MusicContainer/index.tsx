@@ -19,6 +19,8 @@ const MusicContainer: React.FC<IMusicContainerProps> = () => {
 
     const t = useTranslations("main.dashboard.music");
 
+    console.log("music: ",music);
+
     return (
         <div className="space-y-4 mt-4">
             {isLoading && (

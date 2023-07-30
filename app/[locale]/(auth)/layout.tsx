@@ -4,7 +4,7 @@ export interface IAuthLayoutProps {
 }
 
 const AuthLayout: React.FC<IAuthLayoutProps> = ({ children }) => {
-    console.log("auth layout");
+    
     return (
         <div className="flex items-center justify-center h-full">
             {children}
