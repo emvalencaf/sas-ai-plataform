@@ -110,6 +110,12 @@
                     "free-trial" : "Upgrade"
                 }
             }
+        },
+        
+        "auth" : {
+            "demo-btn-label" : "Entrar com Conta DEMO",
+            "demo-btn-label-loading" : "Entrando...",
+            "error-msg": "Algo deu errado!"
         }
     }
 }

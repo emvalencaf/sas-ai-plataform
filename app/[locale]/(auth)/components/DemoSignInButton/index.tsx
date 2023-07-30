@@ -13,16 +13,15 @@ import { DEMOAccount } from "./constants";
 
 // utils
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
-// interfaces
-export interface IDemoSignInButtonProps {
-    title?: string;
-}
 
-const DemoSignInButton: React.FC<IDemoSignInButtonProps> = ({ title = "" }) => {
+const DemoSignInButton: React.FC = () => {
     const router = useRouter();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const t = useTranslations("main.auth");
 
     const { signIn, isLoaded, setActive } = useSignIn();
 
@@ -44,7 +43,7 @@ const DemoSignInButton: React.FC<IDemoSignInButtonProps> = ({ title = "" }) => {
         } catch (error: any) {
             console.log("[DEMOBUTTON_ERROR]: ", error);
             toast.error(
-                "Something went wrong with sign-in with a demo account"
+                t("error-msg")
             );
         } finally {
             setIsLoading(false);
@@ -57,7 +56,7 @@ const DemoSignInButton: React.FC<IDemoSignInButtonProps> = ({ title = "" }) => {
                 variant="default"
                 onClick={handleSignIn}
             >
-                {isLoading ? "SIGNING IN..." : "DEMO SIGN IN"}
+                {isLoading ? t("demo-btn-label-loading") : t("demo-btn-label")}
             </Button>
     );
 };

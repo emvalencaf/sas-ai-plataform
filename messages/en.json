@@ -110,6 +110,11 @@
                     "free-trial" : "Upgrade"
                 }
             }
+        },
+        "auth" : {
+            "demo-btn-label" : "Sign In with DEMO Account",
+            "demo-btn-label-loading" : "Signing In...",
+            "error-msg": "Something went wrong!"
         }
     }
 }
