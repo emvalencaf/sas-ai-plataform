@@ -1,7 +1,7 @@
 # SAAS AI PLATAFORM
 
 - [Documentation in English](#documentation-in-english)
-- [Documentação em Português](#documentacão-em-português)
+- [Documentação em Português](#documentação-em-português)
 - [DEMO](https://saas-ai-plataform.vercel.app)
 
 ## Documentation in English
