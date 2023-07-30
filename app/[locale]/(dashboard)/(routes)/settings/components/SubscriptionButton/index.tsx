@@ -30,7 +30,7 @@ const SubscriptionButton: React.FC<ISubscriptionButtonProps> = ({
         setIsLoading(true);
 
         try {
-            const response = await axios.get("api/stripe");
+            const response = await axios.get("/api/stripe");
 
             window.location.href = response.data.url;
         } catch (error: any) {
